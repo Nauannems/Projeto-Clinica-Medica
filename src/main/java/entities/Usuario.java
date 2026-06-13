@@ -10,7 +10,6 @@ public class Usuario {
     private String cargo;
     private String setor;
     private String nivelAcesso;
-    private String senha;
 
 
     public Usuario(){
@@ -25,8 +24,8 @@ public class Usuario {
             String telefone,
             String cargo,
             String setor,
-            String nivelAcesso,
-            String senha) {
+            String nivelAcesso
+    ){
 
         this.nome = nome;
         this.cpf = cpf;
@@ -35,8 +34,10 @@ public class Usuario {
         this.cargo = cargo;
         this.setor = setor;
         this.nivelAcesso = nivelAcesso;
-        this.senha = senha;
+
     }
+
+
 
     public int getIdUsuario() {
         return idUsuario;
@@ -50,13 +51,13 @@ public class Usuario {
         return nome;
     }
 
-    public void setNome(String nome) {
+    public  void setNome(String nome) {
         this.nome = nome;
     }
-    public String getcpf(){
+    public String getCpf(){
         return cpf;
     }
-    public void setCpf(String cpf){
+    public  void setCpf(String cpf){
         this.cpf =cpf;
     }
     public String getEmail(){
@@ -66,33 +67,30 @@ public class Usuario {
         this. email =email;
     }
     public String getTelefone(){
-    return telefone;
+        return telefone;
     }
-    public void setTelefone(String telefone){
+    public  void setTelefone(String telefone){
         this.telefone =telefone;
     }
     public String getCargo(){
         return cargo;
     }
-    public void setCargo(String cargo){
+    public  void setCargo(String cargo){
         this.cargo = cargo;
+    }
+    public  String getSetor(){
+        return setor;
+    }
+
+    public void setSetor(String setor) {
+        this.setor = setor;
     }
 
     public String getNivelAcesso() {
         return nivelAcesso;
     }
-    public void setnivelAcesso (String nivelAcesso){
+    public  void setNivelAcesso(String nivelAcesso){
         this.nivelAcesso =nivelAcesso;
-    }
-    public String getSenha(){
-        return senha;
-    }
-    public void setSenha(String senha){
-
-        this.senha =senha;
     }
 
 }
-
-
-
