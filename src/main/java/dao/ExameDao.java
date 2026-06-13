@@ -53,7 +53,7 @@ public class ExameDao {
 
                 while (rs.next()){ // para percorre os resultados
                     Exame exame =  new Exame(); // cria uma objeto vazio
-                    // copia os dados e coloca para java
+                    // copia os dados e manda  para java
                     exame.setIdExame(rs.getInt("ID_Exame"));
                     exame.setIdConsulta(rs.getInt("ID_Consulta"));
                     exame.setTipoExame(rs.getString("Tipo_Exame"));
@@ -67,7 +67,7 @@ public class ExameDao {
 
                 return list; // retorna os exames
 
-            } catch (SQLException e ){
+            } catch (SQLException e ){ // tratamento de exercuçao
                 throw  new RuntimeException(e.getMessage());
             }finally {
                 Db.closeResultSet(rs);
@@ -106,7 +106,7 @@ public class ExameDao {
                 conn = Db.getConnection();
                 ps = conn.prepareStatement("DELETE FROM Exame WHere ID_Exame = ?"); // vai apaga o id informado
                 ps.setInt(1, id); // apaga o exame com o id que foi informado
-                ps.executeUpdate(); // removo o registro do banco de dados
+                ps.executeUpdate(); // remove o registro do banco de dados
             }catch (SQLException e ){
                 throw new RuntimeException(e.getMessage());
             }finally {
