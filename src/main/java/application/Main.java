@@ -220,7 +220,119 @@ public class Main extends Application {
     }
 
     private VBox criarPainelPacientes() {
-        return new VBox();
+
+        txtPacienteId = new TextField();
+        txtPacienteId.setPromptText("ID do Paciente");
+        txtPacienteId.setEditable(false);
+        txtPacienteId.setStyle("-fx-background-color: #e8e8e8;");
+
+        txtNomePaciente = new TextField();
+        txtNomePaciente.setPromptText("Nome");
+
+        txtCpfPaciente = new TextField();
+        txtCpfPaciente.setPromptText("CPF");
+
+        txtRgPaciente = new TextField();
+        txtRgPaciente.setPromptText("RG");
+
+        txtNomeTelefonePaciente = new TextField();
+        txtNomeTelefonePaciente.setPromptText("Telefone");
+
+        txtNomeEnderecoPaciente = new TextField();
+        txtNomeEnderecoPaciente.setPromptText("Endereco");
+
+        txtEmailPaciente = new TextField();
+        txtEmailPaciente.setPromptText("Email");
+
+        txtDataNascimentoPaciente = new TextField();
+        txtDataNascimentoPaciente.setPromptText("Data de Nascimento");
+
+        txtContatoEmergenciaPaciente = new TextField();
+        txtContatoEmergenciaPaciente.setPromptText("Contato de Emergencia");
+
+        txtIdEnderecoPaciente = new TextField();
+        txtIdEnderecoPaciente.setPromptText("ID Endereco");
+
+        txtIdPlanoPaciente = new TextField();
+        txtIdPlanoPaciente.setPromptText("ID Plano");
+
+
+        tablePaciente = new TableView<>();
+
+        TableColumn<Paciente, String> colId = new TableColumn<>("ID");
+        colId.setCellValueFactory(cellData ->
+                new javafx.beans.property.SimpleStringProperty(
+                        String.valueOf(cellData.getValue().getIdPaciente())));
+        colId.setPrefWidth(50);
+
+        TableColumn<Paciente, String> colNome = new TableColumn<>("Nome");
+        colNome.setCellValueFactory(cellData ->
+                new javafx.beans.property.SimpleStringProperty(
+                        cellData.getValue().getNome()));
+        colNome.setPrefWidth(180);
+
+
+        TableColumn<Paciente, String> colCpf= new TableColumn<>("CPF");
+        colCpf.setCellValueFactory(cellData ->
+                new javafx.beans.property.SimpleStringProperty(
+                        cellData.getValue().getCpf()));
+        colCpf.setPrefWidth(150);
+
+        TableColumn<Paciente, String> colTelefone = new TableColumn<>("Telefone");
+        colTelefone.setCellValueFactory(cellData ->
+                new javafx.beans.property.SimpleStringProperty(
+                        cellData.getValue().getTelefone()));
+        colTelefone.setPrefWidth(120);
+
+
+        tablePaciente.getColumns().addAll(colId, colNome, colCpf, colTelefone);
+        tablePaciente.setPrefHeight(250);
+
+        tablePaciente.setOnMouseClicked(e -> {
+
+            Paciente paciente = tablePaciente.getSelectionModel().getSelectedItem();
+
+            if (paciente != null) {
+
+                txtPacienteId.setText(String.valueOf(paciente.getIdPaciente()));
+                txtNomePaciente.setText(paciente.getNome());
+                txtCpfPaciente.setText(paciente.getCpf());
+                txtRgPaciente.setText(paciente.getRg());
+                txtNomeTelefonePaciente.setText(paciente.getTelefone());
+                txtNomeEnderecoPaciente.setText(paciente.getEndereco());
+                txtEmailPaciente.setText(paciente.getEmail());
+                txtDataNascimentoPaciente.setText(paciente.getDataNascimento());
+                txtContatoEmergenciaPaciente.setText(paciente.getContatoEmergencia());
+                txtIdEnderecoPaciente.setText(String.valueOf(paciente.getIdEndereco()));
+                txtIdPlanoPaciente.setText(String.valueOf(paciente.getIdPlano()));
+            }
+
+        });
+
+        Button btnAdd = new Button("Salvar");
+        Button btnEdit = new Button("Editar");
+        Button btnDelete = new Button("Excluir");
+
+        HBox botoes = new HBox(10, btnAdd, btnEdit, btnDelete);
+
+        return new VBox(8,
+
+                new Label("ID"), txtPacienteId,
+                new Label("Nome"), txtNomePaciente,
+                new Label("CPF"), txtCpfPaciente,
+                new Label("RG"), txtRgPaciente,
+                new Label("Telefone"), txtNomeTelefonePaciente,
+                new Label("Endereco"), txtNomeEnderecoPaciente,
+                new Label("Email"), txtEmailPaciente,
+                new Label("Data de Nascimento"), txtDataNascimentoPaciente,
+                new Label("Contato de Emergencia"), txtContatoEmergenciaPaciente,
+                new Label("ID Endereco"), txtIdEnderecoPaciente,
+                new Label("ID Plano"), txtIdPlanoPaciente,
+
+                botoes,
+                tablePaciente);
+
+
     }
 
     private VBox criarPainelUsuario() {
