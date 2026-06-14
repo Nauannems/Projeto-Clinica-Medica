@@ -18,6 +18,7 @@ import javafx.application.Application;
 import javafx.scene.layout.VBox;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Main extends Application {
     //convertendo as datas
@@ -198,6 +199,7 @@ public class Main extends Application {
                 txtIdSetor.clear();
                 txtDataHora.clear();
                 txtValor.clear();
+                txtTipo.clear();
                 txtStatus.clear();
                 txtObservacoes.clear();
             } catch (Exception ex) {
@@ -624,6 +626,39 @@ public class Main extends Application {
     }
 
     private void atualizarListas(){
+        List<Consulta> consultas = consultaDao.findAll(); //busca todas as consultas do banco
+        tableConsulta.getItems().clear(); //limpa a tabela
+        tableConsulta.getItems().addAll(consultas); //carrega de novo
+
+        //PACIENTE
+
+        //USUARIO
+
+        //EXAME
+    }
+
+    //metodo pra limpar os campos da tela dps de salvar,editar ou deletar uma consulta
+    private void limparCamposConsulta(){
+        txtIdConsulta.clear();
+        txtIdPaciente.clear();
+        txtCRM.clear();
+        txtIdSetor.clear();
+        txtDataHora.clear();
+        txtValor.clear();
+        txtTipo.clear();
+        txtStatus.clear();
+        txtObservacoes.clear();
+    }
+
+    private void limparCamposPaciente(){
+
+    }
+
+    private void limparCamposUsuario(){
+
+    }
+
+    private void limparCamposExame(){
 
     }
 
