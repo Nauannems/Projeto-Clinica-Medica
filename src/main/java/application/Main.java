@@ -6,6 +6,7 @@ import dao.PacienteDao;
 import dao.UsuarioDao;
 import entities.Consulta;
 import entities.Exame;
+import entities.Paciente;
 import javafx.stage.Stage;
 import javafx.application.Application;
 import javafx.scene.layout.VBox;
@@ -29,7 +30,10 @@ public class Main extends Application {
     private TextField txtDataHora, txtValor, txtTipo, txtStatus, txtObservacoes;
     private TableView<Consulta> tableConsulta;
 
-    //ATRIBUTOS PACIENTE COLOCA PACIENTEID E NAO IDPACIENTE EM BAIXO COLOCA O TABLEVIEW
+    private TextField txtPacienteId, txtNomePaciente, txtCpfPaciente, txtRgPaciente,
+            txtNomeTelefonePaciente, txtNomeEnderecoPaciente,
+            txtEmailPaciente, txtDataNascimentoPaciente, txtContatoEmergenciaPaciente, txtIdEnderecoPaciente,txtIdPlanoPaciente;
+    private TableView<Paciente> tablePaciente;
 
 
     private TextField txtIdUsuario,txtNome,txtTelefone,txtCpf,txtEmail,txtCargo;
