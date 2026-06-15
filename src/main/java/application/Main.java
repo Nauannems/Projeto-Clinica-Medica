@@ -157,11 +157,15 @@ public class Main extends Application {
                consulta.setObservaçoes_sobre_consulta(txtObservacoes.getText());
                consultaDao.insert(consulta); //dps do objeto preenchido chama o dao
                lblStatusGlobal.setText("Status: Consulta adicionada!"); //se der certo envia esse msg
-               txtIdPaciente.clear(); //limpando os campos
+                atualizarListas();
+                limparCamposConsulta();
+
+                txtIdPaciente.clear(); //limpando os campos
                txtCRM.clear();
                txtIdSetor.clear();
                txtDataHora.clear();
                txtValor.clear();
+               txtTipo.clear();
                txtStatus.clear();
                txtObservacoes.clear();
             } catch (Exception ex) {
@@ -184,6 +188,8 @@ public class Main extends Application {
 
                 consultaDao.update(consulta);
                 lblStatusGlobal.setText("Status: Consulta atualizada!");
+                atualizarListas();
+                limparCamposConsulta();
             } catch (Exception ex) {
                 lblStatusGlobal.setText("Erro: " + ex.getMessage());
             }
@@ -193,6 +199,8 @@ public class Main extends Application {
             try {
                 consultaDao.deleteById(Integer.parseInt(txtIdConsulta.getText())); //pega o id digitado da tabela e chama o delete
                 lblStatusGlobal.setText("Statu: Consulta removida!"); //se der certo envia esse msg
+                atualizarListas();
+                limparCamposConsulta();
                 txtIdConsulta.clear(); //limpando os campos
                 txtIdPaciente.clear();
                 txtCRM.clear();
@@ -311,6 +319,8 @@ public class Main extends Application {
                 tablePaciente.getItems().setAll(pacienteDao.findAll());
 
                 lblStatusGlobal.setText("Status: Paciente cadastrado!");
+                atualizarListas();
+                limparCamposPaciente();
 
                 txtPacienteId.clear();
                 txtNomePaciente.clear();
@@ -351,6 +361,8 @@ public class Main extends Application {
                 tablePaciente.getItems().setAll(pacienteDao.findAll());
 
                 lblStatusGlobal.setText("Status: Paciente atualizado!");
+                atualizarListas();
+                limparCamposPaciente();
 
             } catch (Exception ex) {
                 lblStatusGlobal.setText("Erro: " + ex.getMessage());
@@ -365,6 +377,8 @@ public class Main extends Application {
                 tablePaciente.getItems().setAll(pacienteDao.findAll());
 
                 lblStatusGlobal.setText("Status: Paciente excluido!");
+                atualizarListas();
+                limparCamposPaciente();
 
                 txtPacienteId.clear();
                 txtNomePaciente.clear();
@@ -504,9 +518,9 @@ public class Main extends Application {
                  usuario.setNivelAcesso((txtNivelAcesso.getText()));
 
                  usuarioDao.insert(usuario);
+                 lblStatusGlobal.setText("Status: Usuario cadastrado!!");
                  atualizarListas();
                  limparCamposUsuario();
-                 lblStatusGlobal.setText("Status: Usuario cadastrado!!");
 
              } catch (Exception ex) {
                  lblStatusGlobal.setText("Erro:" + ex.getMessage());
@@ -531,11 +545,9 @@ public class Main extends Application {
                 usuario.setNivelAcesso((txtNivelAcesso.getText()));
 
                  usuarioDao.update(usuario);
-
-                 atualizarListas();
-
-                 limparCamposConsulta();
                 lblStatusGlobal.setText("Status: Usuario Atualizado!!");
+                atualizarListas();
+                limparCamposUsuario();
 
             } catch (Exception ex) {
                 lblStatusGlobal.setText("Erro: "+ ex.getMessage());
@@ -545,12 +557,10 @@ public class Main extends Application {
         btnDel.setOnAction(e ->{
             try{
                 usuarioDao.deleteById(Integer.parseInt(txtIdUsuario.getText()));
-
+                lblStatusGlobal.setText("Status : usuário removido!");
                 atualizarListas();
-
                 limparCamposUsuario();
 
-                lblStatusGlobal.setText("Status : usuário removido!");
             } catch (Exception ex) {
 
                 lblStatusGlobal.setText("Erro:"+ex.getMessage());
@@ -646,6 +656,8 @@ public class Main extends Application {
                 exameDao.insert(exame);
 
                 lblStatusGlobal.setText("Status: Exame adicionado");
+                atualizarListas();
+                limparCamposExame();
                 txtIdConsultaExame.clear();
                 txtTipoExame.clear();
                 txtDataExame.clear();
@@ -668,6 +680,8 @@ public class Main extends Application {
                 exame.setValor(Double.parseDouble(txtValorExame.getText()));
                 exameDao.update(exame);
                 lblStatusGlobal.setText("Status: Exame atualizado");
+                atualizarListas();
+                limparCamposExame();
             }catch (Exception ex){
                 lblStatusGlobal.setText("Erro" + ex.getMessage());
             }
@@ -677,6 +691,8 @@ public class Main extends Application {
             try {
                 exameDao.deleteById(Integer.parseInt(txtIdExame.getText()));
                 lblStatusGlobal.setText("Status: Exame removido");
+                atualizarListas();
+                limparCamposExame();
                 txtIdExame.clear();
                 txtIdConsultaExame.clear();
                 txtTipoExame.clear();
@@ -710,12 +726,10 @@ public class Main extends Application {
         tablePaciente.getItems().clear();
         tablePaciente.getItems().addAll(pacientes);
 
+        List<Usuario> usuarios = usuarioDao.findAll(); //todas as consultas
+        tableUsuario.getItems().clear();//limpa
+        tableUsuario.getItems().addAll(usuarios);// entra de novo
 
-        if (tableUsuario != null) {
-            List<Usuario> usuarios = usuarioDao.findAll(); //todas as consultas
-            tableUsuario.getItems().clear();//limpa
-            tableUsuario.getItems().addAll(usuarios);// entra de novo
-        }
 
         //EXAME
     }
@@ -733,7 +747,7 @@ public class Main extends Application {
         txtObservacoes.clear();
     }
 
-    private void imparCamplosPaciente(){
+    private void limparCamposPaciente(){
         txtPacienteId.clear();
         txtNomePaciente.clear();
         txtCpfPaciente.clear();
