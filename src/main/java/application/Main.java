@@ -696,7 +696,10 @@ public class Main extends Application {
         tableConsulta.getItems().clear(); //limpa a tabela
         tableConsulta.getItems().addAll(consultas); //carrega de novo
 
-        //PACIENTE
+        List<Paciente> pacientes = pacienteDao.findAll();
+        tablePaciente.getItems().clear();
+        tablePaciente.getItems().addAll(pacientes);
+
 
         //USUARIO
 
@@ -716,7 +719,18 @@ public class Main extends Application {
         txtObservacoes.clear();
     }
 
-    private void limparCamposPaciente(){
+    private void imparCamplosPaciente(){
+        txtPacienteId.clear();
+        txtNomePaciente.clear();
+        txtCpfPaciente.clear();
+        txtRgPaciente.clear();
+        txtNomeTelefonePaciente.clear();
+        txtNomeEnderecoPaciente.clear();
+        txtEmailPaciente.clear();
+        txtDataNascimentoPaciente.clear();
+        txtContatoEmergenciaPaciente.clear();
+        txtIdEnderecoPaciente.clear();
+        txtIdPlanoPaciente.clear();
 
     }
 
